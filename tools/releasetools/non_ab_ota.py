@@ -211,6 +211,34 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   # Dump fingerprints
   script.Print("Target: {}".format(target_info.fingerprint))
 
+    buildid = target_info.GetBuildProp("ro.superior.display.version")
+    buildday = target_info.GetBuildProp("ro.build.date")
+    securep = target_info.GetBuildProp("ro.build.version.security_patch")
+    device = target_info.GetBuildProp("ro.product.device")
+    androidver = target_info.GetBuildProp("ro.build.version.release")
+
+    script.Print("--------------------------------------------");
+    script.Print("   _____                       _            ");
+    script.Print("  / ___/__  ______  ___  _____(_)___  _____ ");
+    script.Print("  \__ \/ / / / __ \/ _ \/ ___/ / __ \/ ___/ ");
+    script.Print(" ___/ / /_/ / /_/ /  __/ /  / / /_/ / /     ");
+    script.Print("/____/\__,_/ .___/\___/_/  /_/\____/_/      ");
+    script.Print("          /_/                               ");
+    script.Print("               --- Alpha ---                ");
+    script.Print("--------------------------------------------");
+
+    script.Print(" OS version: %s"%(buildid));
+    script.Print("");
+    script.Print(" Android version: %s"%(androidver));
+    script.Print("");
+    script.Print(" Security patch: %s"%(securep));
+    script.Print("");
+    script.Print(" Build date: %s"%(buildday));
+    script.Print("");
+    script.Print(" Device codename: %s"%(device));
+    script.Print("");
+    script.Print("--------------------------------------------");
+
   device_specific.FullOTA_InstallBegin()
 
   # All other partitions as well as the data wipe use 10% of the progress, and
